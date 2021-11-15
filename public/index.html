@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTS WEB</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+  
+</head>
+<body>
+  <div id="app">
+  <!-- navbar start here-->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top .shadow-lg " style="background-color: #F9ED69;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="../assets/img/T-logo.png" width="40"alt="T U C A">
+          </a>
+          <a class="navbar-brand">T U C A</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#Product">Product</a>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  About Us
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#review">Rate Our Website</a></li>
+                  <li><a class="dropdown-item" href="#reviewlist">What People Say</a></li>
+
+                </ul>
+              </li>
+              <button type="button" class="btn btn-primary position-relative float-right ">
+                Cart
+                <span class="cart position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">
+                  {{ cart }}
+                </span>
+              </button>
+
+            </ul>
+                
+  
+
+          </div>
+        </div>    
+      </nav>
+      
+
+  <!-- navbar end here-->
+
+
+<!-- banner start here -->
+  <div class="container-fluid banner" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('../assets/img/welcome.jpg');">
+    <div class="container col-lg-6 banner-content">
+      <div class="text-center">
+        <p class="fs-1">
+          Welcome To TUCA Magic
+        </p>
+        <p class="d-none d-sm-block">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, dolore. Molestias quam commodi sed quia provident? Earum tempora beatae quidem.
+        </p>
+      </div>
+    </div>
+      
+  </div>
+  <!-- banner end here -->
+
+  
+
+
+  <!--Card-->
+    <div class="container-fluid py-5" id="Product">
+
+
+      <div class="container">
+        <h2 class="text-center">Our Product</h2>
+
+        <div class="row">
+      
+          <!-- card template in product-display component -->
+          <product-display @add-to-cart="addToCart"></product-display>
+          <product-display @add-to-cart="addToCart"></product-display>
+          <product-display @add-to-cart="addToCart"></product-display>
+          <product-display @add-to-cart="addToCart"></product-display>
+  
+        </div>
+      </div>   
+    </div>   
+  <!--End of card-->
+
+
+  <!-- Review Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Product Review</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus laboriosam incidunt aperiam dolore omnis accusantium tempora minus, illum ipsum quo facere autem enim cumque sunt eaque dolorem deserunt. Saepe molestias cumque cum corrupti vero modi libero voluptatum eos. Cupiditate sint alias molestias quae debitis eaque corrupti veritatis esse, repellendus modi!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Review Product-->
+  
+  <div class="container-fluid py-5 primary-bg-color text-black" id="review">
+   
+
+    
+    <div class="container">
+      <h2 class="text-center mb-4 ">
+        Rate Us
+      </h2>
+      
+      <div>
+        <review-form @review-submitted='addReview'></review-form>
+ 
+      </div> 
+    
+    </div>
+    
+  </div>
+  
+  <!-- Review Product end here-->
+
+  <!-- Review List start here -->
+  <div class="container-fluid py-5 bg-dark text-light" id="reviewlist">
+    <div class="container">
+      <h2 class="text-center mb-5 ">
+        People Opinion
+      </h2>
+
+      <div class="col-12 mb-4">
+        <figure>
+          <blockquote class="blockquote">
+            <p>This Is The Best Website That I Ever Visited.</p>
+          </blockquote>
+          <figcaption class="blockquote-footer">
+            Lucas 
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="col-12 mb-4">
+        <figure class="text-end">
+          <blockquote class="blockquote">
+            <p>My Boyfriend Say This Website Is The Best.</p>
+          </blockquote>
+          <figcaption class="blockquote-footer">
+            Lucas Girlfriend 
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="col-12 mb-4">
+        <figure>
+          <blockquote class="blockquote">
+            <p>The Interface Is Good And Easy to use.</p>
+          </blockquote>
+          <figcaption class="blockquote-footer">
+            Nyoman 
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="col-12 mb-4">
+        <figure class="text-end">
+          <blockquote class="blockquote">
+            <p>Best Product That You Can Find Online.</p>
+          </blockquote>
+          <figcaption class="blockquote-footer">
+            Deddy Corbuzier 
+          </figcaption>
+        </figure>
+      </div>
+
+    </div>
+
+  </div>
+  <!-- Review List end here -->
+
+
+</div>
+       
+
+<!-- Import App -->
+<script src="../src/main.js"></script>
+
+<!-- Import Component -->
+<script src="../components/ReviewForm.js"></script>
+<script src="../components/ProductDisplay.js"></script>
+<script src="../components/ReviewList.js"></script>
+<script src="../components/SiteReviewList.js"></script>
+
+<!-- Mount App -->
+<script>
+  const mountedApp = app.mount('#app')
+</script>
+<!-- bootsrap -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>   
+</body>
+</html>
